@@ -117,12 +117,9 @@ public class stockdetails{
 	    			
 	    			System.out.println("ENTER THE STOCKID TO VIEW STOCKDETAILS");
 	   	             int getbystockid=obj.nextInt();
-	   	          String q6="select*from stocks.NIFTY50 where STOCKID=?";
-	   	    PreparedStatement st4 =con.prepareStatement(q6);
-	    			 st4.setInt(1,getbystockid);
-	    			 st4.executeUpdate();
-	    			 Statement st5=con.createStatement();
-	    			 ResultSet rs= st5.executeQuery(q6);
+	   	          String q6="select*from stocks.NIFTY50 where STOCKID="+getbystockid;
+	   	       Statement st4=(Statement) con.createStatement();     
+	    		  ResultSet rs= st4.executeQuery(q6);
 	    			 while(rs.next()) {
 	    	        	 System.out.println("ID"+rs.getInt(1));
 	    	        	 System.out.println("STOCKNAME"+rs.getString(2));
@@ -136,12 +133,32 @@ public class stockdetails{
 	   				  e.printStackTrace();
 	   				  
 	   			  }}
+	        	public void STOCKSTABLE(){
+	        		try { Connection con=DriverManager.getConnection(url,username,password);
+	    			
+	    			//System.out.println("ENTER THE STOCKID TO VIEW STOCKDETAILS");
+	   	            // int getbystockid=obj.nextInt();
+	   	          String q7="select*from stocks.NIFTY50";
+	   	       Statement st4=(Statement) con.createStatement();     
+	    		  ResultSet rs= st4.executeQuery(q7);
+	    		  System.out.println("ID  STOCKNAAME CP OP DH DL" );
+	    			 while(rs.next()) {
+	    	        	 System.out.println(rs.getInt(1)+rs.getString(2)+
+	    	        	+rs.getFloat(3)++rs.getFloat(4)+
+	    	        +rs.getFloat(5)++rs.getFloat(6));
+	    	        	}}
+	    	         
+	    	         catch(SQLException e) {
+	   				  e.printStackTrace();
+	   				  
+	   			  }}
 	        public static void main(String[] args)throws Exception{
 	           stockdetails obj=new stockdetails();
 	                 // obj.create();
-	                // obj.insert();
+	               // obj.insert();
 	               // obj.nameupdate();
-	           obj.getbystockid();
+	        //  obj.getbystockid();
+	           obj.STOCKSTABLE();
 	 
 }}
 
